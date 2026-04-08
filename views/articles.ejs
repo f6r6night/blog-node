@@ -1,0 +1,42 @@
+<%- include('partials/header') %>
+
+<main>
+    <a href="/">← Retour à l'accueil</a>
+
+    <article>
+        <h1><%= article.nom_article %></h1>
+        <p class="meta">
+            Par <strong><%= article.nom_auteur %></strong> dans <strong><%= article.nom_categorie %></strong>
+            le <%= article.date_publication.toLocaleDateString('fr-FR') %>
+        </p>
+
+        <div class="tags">
+            <% tags.forEach(tag => { %>
+                <span class="badge"><%= tag.nom_tag %></span>
+            <% }); %>
+        </div>
+
+        <div class="content">
+            <p><%= article.contenu %></p>
+        </div>
+    </article>
+
+    <hr>
+
+    <section class="comments">
+        <h3>Commentaires (<%= comments.length %>)</h3>
+        <% if (comments.length === 0) { %>
+            <p>Aucun commentaire pour le moment.</p>
+        <% } else { %>
+            <% comments.forEach(comment => { %>
+                <div class="comment">
+                    <strong><%= comment.nom_visiteur %></strong> 
+                    <small>le <%= comment.date_commentaire.toLocaleDateString('fr-FR') %></small>
+                    <p><%= comment.contenu %></p>
+                </div>
+            <% }); %>
+        <% } %>
+    </section>
+</main>
+
+<%- include('partials/footer') %>
