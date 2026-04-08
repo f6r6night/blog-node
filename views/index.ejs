@@ -1,0 +1,32 @@
+<%- include('partials/header') %>
+
+<main>
+    <h1>Dernières publications</h1>
+
+    <div class="articles-container">
+        <% articles.forEach(article => { %>
+            <article>
+                <h2>
+                    <a href="/article/<%= article.id_article %>">
+                        <%= article.nom_article %>
+                    </a>
+                </h2>
+
+                <p>
+                    Posté par <strong><%= article.nom_auteur %></strong> 
+                    dans <em><%= article.nom_categorie %></em> 
+                    le <%= article.date_publication.toLocaleDateString('fr-FR') %>
+                </p>
+
+                <p>
+                    <%= article.contenu.substring(0, 100) %>...
+                </p>
+
+                <a href="/article/<%= article.id_article %>">Lire la suite</a>
+            </article>
+            <hr>
+        <% }); %>
+    </div>
+</main>
+
+<%- include('partials/footer') %>
